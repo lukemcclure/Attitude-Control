@@ -1,0 +1,31 @@
+% This function will input the radius r and euler agles of RAAN, inclination, and anomaly
+% Outputs will be inertial position and velocity vectors
+
+h = 400; %Orbital height of LMO in KM
+r_lmo = h+3396.19; %Actual radius of orbit in KM
+r_gmo = 20424.2; %Radius of orbit of GMO
+mu = 42828.3; %Mars gravitational constant in km^3/s^2
+
+theta_dot_lmo = sqrt(mu/r_lmo^3); %Constant orbit rate of Lmo craft 
+theta_dot_gmo = 0.0000709003;
+
+% Initial orbital orientations - in Hill frame
+H_lmo = [20 30 60]';
+H_gmo = [0 0 250]';
+
+% Here's the equation for orbital velocity 
+% (Nice and simple for circular orbits!)
+r_dot_lmo = sqrt(mu/r_lmo);
+r_dot_gmo = sqrt(mu/r_gmo);
+
+for t = 0:1:450
+    H_lmo = [20 30 60+theta_dot_lmo*t]';
+end
+
+NH_gmo = Euler3132C(H_lmo);
+gmo_pos = NH_gmo'*[r_lmo 0 0]';
+gmo_velocity = NH_
+
+lmo
+
+
